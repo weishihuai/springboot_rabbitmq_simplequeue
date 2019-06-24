@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: rabbitmq-simplequeue
+server:
+  port: 1111
+
+rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  vhost: /vhost
+  username: wsh
+  password: wsh
