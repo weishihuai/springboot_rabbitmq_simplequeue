@@ -1,4 +1,4 @@
-package com.wsh.rabbitmq.springboot_rabbitmq_simplequeue.workqueues.producer;
+package com.wsh.rabbitmq.springboot_rabbitmq_simplequeue.workqueues.roundrobin.producer;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class CustomProducer {
     private static final String WORK_QUEUE_NAME = "MQ_WORK_QUEUE";
-    private static final String WORK_QUEUE_MESSAGE = "CUSTOMPRODUCER --> WORK_QUEUE_MESSAGE";
+    private static final String WORK_QUEUE_MESSAGE = "hello world!! ------> ";
 
     public static void main(String[] args) {
         //获取MQ连接

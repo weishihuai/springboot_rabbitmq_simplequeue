@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeoutException;
 
 /**
  * @Description: 消息消费者(新API)
@@ -17,13 +16,12 @@ import java.util.concurrent.TimeoutException;
  */
 public class NewCustomConsumer {
     private static Logger logger = LoggerFactory.getLogger(NewCustomConsumer.class);
-
     private static final String SIMPLE_QUEUE_NAME = "MQ_SIMPLE_QUEUE";
 
     public static void main(String[] args) {
         //获取MQ连接对象
         Connection connection = MQConnecitonUtils.getConnection();
-        Channel channel = null;
+        Channel channel;
         try {
             //创建消息通道对象
             channel = connection.createChannel();
@@ -44,5 +42,4 @@ public class NewCustomConsumer {
             e.printStackTrace();
         }
     }
-
 }

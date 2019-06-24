@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @Description: 获取RabbitMQ的连接
+ * @Description: 获取RabbitMQ的连接工具类
  * @Author: weixiaohuai
  * @Date: 2019/6/22
  * @Time: 21:29

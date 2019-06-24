@@ -1,4 +1,4 @@
-package com.wsh.rabbitmq.springboot_rabbitmq_simplequeue.workqueues.consumer;
+package com.wsh.rabbitmq.springboot_rabbitmq_simplequeue.workqueues.roundrobin.consumer;
 
 import com.rabbitmq.client.*;
 import com.wsh.rabbitmq.springboot_rabbitmq_simplequeue.utils.MQConnecitonUtils;
@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-public class CustomConsumer02 {
-    private static Logger logger = LoggerFactory.getLogger(CustomConsumer02.class);
+public class CustomConsumer01 {
+    private static Logger logger = LoggerFactory.getLogger(CustomConsumer01.class);
 
     private static final String WORK_QUEUE_NAME = "MQ_WORK_QUEUE";
 
@@ -28,18 +28,18 @@ public class CustomConsumer02 {
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                     //消息消费者获取消息
                     String message = new String(body, StandardCharsets.UTF_8);
-                    logger.info("【CustomConsumer02】receive message: " + message);
+                    logger.info("【CustomConsumer01】receive message: " + message);
                     try {
-                        Thread.sleep(1000);
+                        //模拟延迟
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             };
 
-            boolean autoAck = true;
             //监听消息队列
-            channel.basicConsume(WORK_QUEUE_NAME, autoAck, consumer);
+            channel.basicConsume(WORK_QUEUE_NAME, true, consumer);
         } catch (IOException e) {
             e.printStackTrace();
         }

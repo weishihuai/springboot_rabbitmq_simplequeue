@@ -17,11 +17,11 @@ import java.util.concurrent.TimeoutException;
  * 1. 生产者、消费者指定：channel.basicQos(1);
  * 2. 消费者消费完消息自动发送确认消息：channel.basicAck(envelope.getDeliveryTag(), false);
  * 3. 消费者必须关闭自动应答：autoAck = false;
- * 4. 一般消费者如果处理消息的时间较短，那么它处理的消息会比较多一些;
+ * 4. 一般消费者如果处理消息的时间较短(效率较高)，那么它处理的消息会比较多一些;
  */
 public class CustomProducer {
     private static final String WORK_QUEUE_NAME = "MQ_WORK_QUEUE";
-    private static final String WORK_QUEUE_MESSAGE = "CUSTOMPRODUCER --> WORK_QUEUE_MESSAGE";
+    private static final String WORK_QUEUE_MESSAGE = "hello world!! ------> ";
 
     public static void main(String[] args) {
         //获取MQ连接
@@ -33,7 +33,7 @@ public class CustomProducer {
             //创建Queue队列
             channel.queueDeclare(WORK_QUEUE_NAME, false, false, false, null);
 
-            //每个消费者发送确认消息之前，消息队列不发送下一个消息到消费者
+            //每个消费者发送确认消息之前，消息队列不发送下一个消息到消费者(同一时刻服务器只会发送一条消息给消费者)
             channel.basicQos(1);
 
             //发送10条消息到工作队列
