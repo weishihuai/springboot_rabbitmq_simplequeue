@@ -17,10 +17,9 @@ import java.util.concurrent.TimeoutException;
  * <p>
  * a. 一个生产者，多个消费者；
  * b. 每一个消费者都有自己的消息队列；
- * c.生产者没有把消息发送到队列，而是发送到交换器exchange上；
- * d.每个队列都需要绑定到交换机上；
- * e.生产者生产的消息 经过交换机 到达队列，一个消息可以被多个消费者消费；
- *
+ * c. 生产者没有把消息发送到队列，而是发送到交换器exchange上；
+ * d. 每个队列都需要绑定到交换机上；
+ * e. 生产者生产的消息先经过交换机然后到达队列，一个消息可以被多个消费者消费；
  */
 public class CustomProducer {
     private static final String PUBLISH_SUBSCRIBE_EXCHANGE_NAME = "publish_subscribe_exchange_fanout";
@@ -34,10 +33,10 @@ public class CustomProducer {
         Channel channel = null;
         try {
             channel = connection.createChannel();
-            //创建交换机对象
+            //创建交换机对象publish_subscribe_exchange_fanout
             channel.exchangeDeclare(PUBLISH_SUBSCRIBE_EXCHANGE_NAME, PUBLISH_SUBSCRIBE_EXCHANGE_TYPE);
             //发送消息到交换机exchange上
-            String msg = "publish_subscribe_exchange_fanout";
+            String msg = "hello world!!!";
             channel.basicPublish(PUBLISH_SUBSCRIBE_EXCHANGE_NAME, "", null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

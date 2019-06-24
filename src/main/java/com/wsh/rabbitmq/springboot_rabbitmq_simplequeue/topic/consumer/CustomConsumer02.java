@@ -18,7 +18,8 @@ public class CustomConsumer02 {
     private static Logger logger = LoggerFactory.getLogger(CustomConsumer02.class);
     private static final String QUEUE_NAME = "topic_queue_name2";
     private static final String EXCHANGE_NAME = "exchange_topic";
-    private static final String EXCHANGE_ROUTE_KEY = "goods.#";
+    //binding key
+    private static final String EXCHANGE_ROUTE_KEY = "news.#";
 
     public static void main(String[] args) {
         //获取MQ连接对象

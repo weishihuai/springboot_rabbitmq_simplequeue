@@ -18,6 +18,7 @@ public class CustomConsumer02 {
     private static Logger logger = LoggerFactory.getLogger(CustomConsumer02.class);
     private static final String QUEUE_NAME = "routing_direct_queue_name02";
     private static final String EXCHANGE_NAME = "publish_subscribe_exchange_direct";
+    //binding key
     private static final String EXCHANGE_ROUTE_KEY01 = "error";
     private static final String EXCHANGE_ROUTE_KEY02 = "info";
     private static final String EXCHANGE_ROUTE_KEY03 = "warning";
@@ -30,6 +31,7 @@ public class CustomConsumer02 {
             final Channel channel = connection.createChannel();
             //创建队列
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
             //将队列绑定到交换机上,并且指定routing_key
             channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, EXCHANGE_ROUTE_KEY01);
             channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, EXCHANGE_ROUTE_KEY02);

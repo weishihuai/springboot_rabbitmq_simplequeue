@@ -18,6 +18,7 @@ public class CustomConsumer01 {
     private static Logger logger = LoggerFactory.getLogger(CustomConsumer01.class);
     private static final String QUEUE_NAME = "routing_direct_queue_name";
     private static final String EXCHANGE_NAME = "publish_subscribe_exchange_direct";
+    //binding key
     private static final String EXCHANGE_ROUTE_KEY = "error";
 
     public static void main(String[] args) {

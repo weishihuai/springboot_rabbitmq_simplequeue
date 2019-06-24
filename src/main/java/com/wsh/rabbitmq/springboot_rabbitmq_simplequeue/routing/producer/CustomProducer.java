@@ -13,9 +13,11 @@ import java.util.concurrent.TimeoutException;
  * @Date: 2019/6/23
  * @Time: 15:20
  * <p>
+ * 说明：生产者发送消息的时候指定routing key,然后消费者绑定队列的时候也指定一些binding key，只有binding key与routing key一致的消费者才能接收到此消息
  */
 public class CustomProducer {
     private static final String EXCHANGE_NAME = "publish_subscribe_exchange_direct";
+    //交换机类型：direct
     private static final String EXCHANGE_TYPE = "direct";
     private static final String EXCHANGE_ROUTE_KEY = "info";
 
@@ -29,7 +31,8 @@ public class CustomProducer {
             //创建交换机对象
             channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE);
             //发送消息到交换机exchange上
-            String msg = "exchange_direct";
+            String msg = "hello world!!!";
+            //指定routing key为info
             channel.basicPublish(EXCHANGE_NAME, EXCHANGE_ROUTE_KEY, null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
